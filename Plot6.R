@@ -5,6 +5,9 @@ if (!exists("NEI")) {
         NEI <- readRDS("Data File/summarySCC_PM25.rds")
 }
 
+#library
+library(ggplot2)
+
 # Subset Baltimore and Los Angeles data
 reqVehicleData <- subset(NEI, (fips == "24510"|fips == "06037") & type == "ON-ROAD")
 
@@ -13,8 +16,8 @@ totalPM2.5 <- aggregate(Emissions ~ year + fips, reqVehicleData, sum)
 rm(reqVehicleData)
 
 # City names a better factor in GGPlot
-totalPM2.5$City[totalPM2.5$fips=="24510"] <- "Baltimore"
-totalPM2.5$City[totalPM2.5$fips=="06037"] <- "Los Angeles"
+totalPM2.5$City[totalPM2.5$fips=="24510"] <- "Baltimore City"
+totalPM2.5$City[totalPM2.5$fips=="06037"] <- "Los Angeles County"
 
 # Graphing System
 
